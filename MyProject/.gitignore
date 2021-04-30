@@ -1,0 +1,16 @@
+*.pyc
+*.save
+*.python
+*.iml
+*.log
+.idea/
+venv/
+.vscode/
+uploads/
+
+db.sqlite3
+
+__pycache__
+
+env.sh
+
