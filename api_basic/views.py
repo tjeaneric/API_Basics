@@ -6,10 +6,34 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 
+from rest_framework import mixins
+from rest_framework import generics
+
 from .models import Article
 from .serializers import ArticleSerializer
 
 # Create your views here.
+
+class GenericAPIView(generics.GenericAPIView, mixins.ListModelMixin, 
+                     mixins.CreateModelMixin, mixins.UpdateModelMixin,
+                     mixins.DestroyModelMixin):
+    serializer_class = ArticleSerializer
+    queryset = Article.objects.all()
+
+    def get(self, request):
+        return self.list(request)
+
+    def post(self, request):
+        return self.create(request)
+
+
+    def put(self, request, id):
+        return self.update(request, id)
+
+    def delete(self, request, id):
+        return self.destroy(request, id)
+
+
 class ArticleApiView(APIView):
 
     def get(self, request):
