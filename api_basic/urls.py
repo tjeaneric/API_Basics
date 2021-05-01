@@ -4,10 +4,10 @@ from .views import article_list,article_detail, ArticleApiView, ArticleDetail, G
 urlpatterns = [
     # path('article/', article_list, name="article"),
     path('article/', ArticleApiView.as_view(), name="article"),
-    path('generic/article/', GenericAPIView.as_view(), name="article"),
+    path('generic/article/<int:id>/', GenericAPIView.as_view(), name="article"),
 
     # path('detail/<int:pk>/', article_detail, name="detail")
-    path('generic/detail/<int:id>/', ArticleDetail.as_view(), name="detail")
+    path('detail/<int:id>/', ArticleDetail.as_view(), name="detail")
 
 
 ]
